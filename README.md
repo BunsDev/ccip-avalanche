@@ -16,20 +16,14 @@ Receiver in our example must be a smart contract that implements `CCIPReceiver.s
 In the next section you can see how to send data from one chain to another. But before that, you need to set up some environment variables, install dependencies, setup environment variables, and compile contracts.
 
 ### A. Install Dependencies
-```
+```shell
 yarn && make
 ```
 
 ### B. Setup Environment Variables
-Copy & paste `.env.example` and name it `.env` and fill in the variables.
 
 ```shell
-cp .env.example .env
-```
-
-After filling out your `.env`, run the following:
-```shell
-source .env
+cp .env.example .env && source .env
 ```
 
 ### C. Create Wallet
