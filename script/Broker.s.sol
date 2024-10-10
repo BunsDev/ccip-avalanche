@@ -40,8 +40,6 @@ contract BrokerMessage is BaseScript {
         bytes32 latestBrokerMessageId = messageBroker.latestBrokeredId();
         console.log("latestBrokerMessageId: ");
         console.logBytes32(latestBrokerMessageId);
-        // bytes memory encodedMessage = abi.encode(latestMessage);
-        // console.logBytes(encodedMessage);
 
         console.log("\u2705 | Brokered \'%s\'", messageBrokered);
 
