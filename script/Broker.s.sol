@@ -27,21 +27,21 @@ contract BrokerMessage is BaseScript {
         console.log("\u2705 | Sender:", latestSender);
         console.log("\u2705 | Message: \'%s\'", latestMessage);
 
-        console.log("\u231B | Brokering \'%s\' to Dispatch...", latestMessage);
+        // console.log("\u231B | Brokering \'%s\' to Dispatch...", latestMessage);
 
-        bytes32 brokerMessageId =
-            messageBroker.brokerMessage(
-                MESSAGE_RECEIVER_ADDRESS // _destinationAddress
-        );
+        // bytes32 brokerMessageId =
+        //     messageBroker.brokerMessage(
+        //         MESSAGE_RECEIVER_ADDRESS // _destinationAddress
+        // );
 
-        console.log("brokerMessageId: ");
-        console.logBytes32(brokerMessageId);
-        string memory messageBrokered = messageBroker.latestMessageText();
-        bytes32 latestBrokerMessageId = messageBroker.latestBrokeredId();
-        console.log("latestBrokerMessageId: ");
-        console.logBytes32(latestBrokerMessageId);
+        // console.log("brokerMessageId: ");
+        // console.logBytes32(brokerMessageId);
+        // string memory messageBrokered = messageBroker.latestMessageText();
+        // bytes32 latestBrokerMessageId = messageBroker.latestBrokeredId();
+        // console.log("latestBrokerMessageId: ");
+        // console.logBytes32(latestBrokerMessageId);
 
-        console.log("\u2705 | Brokered \'%s\'", messageBrokered);
+        // console.log("\u2705 | Brokered \'%s\'", messageBrokered);
 
         vm.stopBroadcast();
     }

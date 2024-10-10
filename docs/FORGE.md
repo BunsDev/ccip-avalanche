@@ -64,3 +64,31 @@ $ forge --help
 $ anvil --help
 $ cast --help
 ```
+
+---
+## Verification Instructions
+
+### Sepolia Example
+```shell
+forge verify-contract $MESSAGE_SENDER_ADDRESS src/MessageSender.sol:MessageSender \
+--rpc-url 'https://eth-sepolia.public.blastapi.io' \
+--verifier blockscout \
+--verifier-url 'https://eth-sepolia.blockscout.com/api/' \
+```
+
+### Fuji Example
+```shell
+forge verify-contract $MESSAGE_BROKER_ADDRESS src/MessageBroker.sol:MessageBroker \
+--rpc-url 'https://api.avax-test.network/ext/bc/C/rpc' \
+--verifier-url 'https://api.routescan.io/v2/network/testnet/evm/43113/etherscan' \
+--etherscan-api-key "verifyContract"
+```
+
+### Dispatch Example
+```shell
+forge verify-contract 0x0d0debEFCaC433885a51B32c359Cc971522F29cD src/MessageReceiver.sol:MessageReceiver \
+--rpc-url 'https://subnets.avax.network/dispatch/testnet/rpc' \
+--verifier-url 'https://api.routescan.io/v2/network/testnet/evm/779672/etherscan' \
+--verifier etherscan \
+--etherscan-api-key "verifyContract"
+```

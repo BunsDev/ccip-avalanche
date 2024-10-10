@@ -55,7 +55,7 @@ cast wallet address --keystore $KEYSTORE
 ### Smart Contract Design
 ![messaging-process](./img/messaging-process.png)
 
-### A. Deploy Smart Contracts
+### A. Deploy Contracts
 In order to interact with our contracts, we first need to deploy them, which is simplified in the [`script/Deploy.s.sol`](./script/Deploy.s.sol) smart contract. 
 
 We have package scripts that enable you to deploy contracts, as follows:
@@ -73,7 +73,7 @@ yarn deploy:receiver
 ```
 >[`MessageReceiver.sol`](./src/MessageReceiver.sol)
 
-### B. Fund Message Sender Contract
+### B. Fund Sender Contract
 
 After acquiring testnet tokens, you will proceed with funding your [Message Sender Contract](./src/MessageSender.sol) with some native tokens (ETH).
 
@@ -81,85 +81,32 @@ After acquiring testnet tokens, you will proceed with funding your [Message Send
 cast send $MESSAGE_SENDER_ADDRESS --rpc-url ethereumSepolia --value 0.05ether --keystore keystore
 ```
 
-# Sending Data Cross-Chain
+# Messaging Cross-Chain
 > *Before proceeding, please ensure you have completed the steps outlined in the [Setup Messaging Scenario](#setup-messaging-scenario) section above.*
 
-## Ethereum Sepolia &rarr; Avalanche Fuji
+## 1. Ethereum Sepolia &rarr; Avalanche Fuji
 
 ### Sending Message (Sepolia &rarr; Fuji)
 
 Run the following to send a message to Fuji from Sepolia via the `SendMessage` functionality coded in [Send.s.sol](./script/Send.s.sol):
 
-    ```shell
-    yarn sendMessage "$CUSTOM_MESSAGE"
-    ```
+```bash
+forge script ./script/Send.s.sol:SendMessage -vvv --broadcast --rpc-url ethereumSepolia --sig \"run(string)\" -- "$CUSTOM_MESSAGE"
+```
 
-## Avalanche Fuju &rarr; Dispatch Testnet
+## 2. Avalanche Fuji &rarr; Dispatch Testnet
 
 ### Brokering Message (Fuji &rarr; Dispatch)
 
-Once the message is finalized on the broker chain (*Fuji*), you may see the details about the latest message via the `BrokerMessage` functionality coded in [Broker.s.sol](./script/Broker.s.sol).
+Once the message is finalized on the broker chain (*Fuji*), you may see the details about the latest message via the `BrokerMessage` functionality coded in [Broker.s.sol](./script/Broker.s.sol). After you have confirmed the latest message you received looks good, you may proceed with running the following script to broker the message to Dispatch:
 
-<!-- ```shell
-forge script ./script/Send.s.sol:GetLatestMessageDetails -vvv --broadcast --rpc-url avalancheFuji --sig "run()"
-``` -->
-
-**3 | Get Details**: once the CCIP message is finalized on the destination blockchain (Fuji), you can see the details of the latest CCIP message received, by running the following command:
-
-
-## Avalanche Fuji &rarr; Dispatch L1
-
----
-# Key Addresses
-
-**`MessageSender.sol`**
-[0x1272d0C7CBDD78d4dc2F35F6bB5B9c40fe944dA7](https://eth-sepolia.blockscout.com/address/0x1272d0C7CBDD78d4dc2F35F6bB5B9c40fe944dA7?tab=contract)
-
-**`MessageBroker.sol`**
-[0x0a10A4AfE5E852bdaE91678f98fE71168B048e41](https://testnet.snowtrace.io/address/0x0a10A4AfE5E852bdaE91678f98fE71168B048e41)
-
-**`MessageReceiver.sol`**
-[0x0d0debEFCaC433885a51B32c359Cc971522F29cD](https://779672.testnet.snowtrace.io/address/0x0d0debEFCaC433885a51B32c359Cc971522F29cD/contract/779672/code)
-
----
-# Resources
-
-----
-
-# ccip-avalanche
-- Using CCIP to enable cross-chain transactions -- initiated on Ethereum Sepolia, namely a message broker. 
-- Used for a workshop at Avalanche Summit LATAM in Argentina (October 2024).
-
-## Deploy Contracts
-
-- [`MessageSender.sol`](./src/MessageSender.sol)
-- [`MessageBroker.sol`](./src/MessageBroker.sol)
-- [`MessageReceiver.sol`](./src/MessageReceiver.sol)
-
-## Verification Instructions
-
-### Sepolia Example
-```shell
-forge verify-contract $MESSAGE_SENDER_ADDRESS src/MessageSender.sol:MessageSender \
---rpc-url 'https://eth-sepolia.public.blastapi.io' \
---verifier blockscout \
---verifier-url 'https://eth-sepolia.blockscout.com/api/' \
+```bash
+cast send $MESSAGE_BROKER_ADDRESS --rpc-url avalancheFuji --keystore keystore "brokerMessage(address)" $MESSAGE_RECEIVER_ADDRESS
 ```
 
-### Fuji Example
-```shell
-forge verify-contract $MESSAGE_BROKER_ADDRESS src/MessageBroker.sol:MessageBroker \
---rpc-url 'https://api.avax-test.network/ext/bc/C/rpc' \
---verifier-url 'https://api.routescan.io/v2/network/testnet/evm/43113/etherscan' \
---etherscan-api-key "verifyContract"
+## 3. Dispatch Testnet
+### Receiving Message (Dispatch)
+After running the script above to broker the message from Fuji to Dispatch, you may confirm the message was received by running the following script:
+```bash
+forge script ./script/Receive.s.sol:ReceiveMessage -vvv --broadcast --rpc-url dispatchTestnet
 ```
-
-### Dispatch Example
-```shell
-forge verify-contract 0x0d0debEFCaC433885a51B32c359Cc971522F29cD src/MessageReceiver.sol:MessageReceiver \
---rpc-url 'https://subnets.avax.network/dispatch/testnet/rpc' \
---verifier-url 'https://api.routescan.io/v2/network/testnet/evm/779672/etherscan' \
---verifier etherscan \
---etherscan-api-key "verifyContract"
-```
-

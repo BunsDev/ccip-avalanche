@@ -1,3 +1,15 @@
+# Deployed Contracts
+
+**`MessageSender.sol`**
+[0x1272d0C7CBDD78d4dc2F35F6bB5B9c40fe944dA7](https://eth-sepolia.blockscout.com/address/0x1272d0C7CBDD78d4dc2F35F6bB5B9c40fe944dA7?tab=contract)
+
+**`MessageBroker.sol`**
+[0x0a10A4AfE5E852bdaE91678f98fE71168B048e41](https://testnet.snowtrace.io/address/0x0a10A4AfE5E852bdaE91678f98fE71168B048e41)
+
+**`MessageReceiver.sol`**
+[0x0d0debEFCaC433885a51B32c359Cc971522F29cD](https://779672.testnet.snowtrace.io/address/0x0d0debEFCaC433885a51B32c359Cc971522F29cD/contract/779672/code)
+
+
 >> yarn sendMessage "Hai Dispatch"
 >> You can now monitor the status of your Chainlink CCIP Message via https://ccip.chain.link using CCIP Message ID: 0x72c8d3213e1cf593670bef00caa748815848ea7efc9fbd9bfe29e1eeedde5943
 
@@ -6,6 +18,15 @@ https://ccip.chain.link/msg/0x72c8d3213e1cf593670bef00caa748815848ea7efc9fbd9bfe
 ---
 
 >> yarn brokerMessage
+>> == Logs ==
+  === Latest Message Details ===
+  ✅ | MessageID: 
+  0x72c8d3213e1cf593670bef00caa748815848ea7efc9fbd9bfe29e1eeedde5943
+  ✅ | Source Chain Selector: 16015286601757825753
+  ✅ | Sender: 0x1272d0C7CBDD78d4dc2F35F6bB5B9c40fe944dA7
+  ✅ | Message: 'Hai Dispatch'
+✨  Done in 6.63s.
+
 >> cast send 0x0a10A4AfE5E852bdaE91678f98fE71168B048e41 --rpc-url avalancheFuji --keystore keystore "
 brokerMessage(address)" 0x0d0debEFCaC433885a51B32c359Cc971522F29cD
 
