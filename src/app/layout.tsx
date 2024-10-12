@@ -1,17 +1,39 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+import localFont from "next/font/local";
+import { Inter, Roboto_Mono, Space_Mono, Space_Grotesk } from 'next/font/google'
+ 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+ 
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto-mono',
+})
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+// const geist_sans = Space_Mono({
+//   weight: "700",
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-space-mono',
+// })
+const space_sans = Space_Grotesk({
+  weight: "700",
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-space-grotesk',
+})
+
+const space_mono = Space_Mono({
+  weight: "700",
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-space-mono',
+})
 
 export const metadata: Metadata = {
   title: "CCIP-ICM",
@@ -27,8 +49,8 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`
-            ${geistSans.variable} 
-            ${geistMono.variable} 
+            ${space_sans.variable} 
+            ${space_mono.variable} 
           antialiased
           `}
       >

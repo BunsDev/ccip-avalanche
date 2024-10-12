@@ -14,3 +14,6 @@ keystore
 
 node_modules
 .DS_Store
+
+# NextJS
+.next
