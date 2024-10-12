@@ -8,17 +8,14 @@
     {
       "command": "curl -L https://foundry.paradigm.xyz | bash && ~/.foundry/bin/foundryup",
       "name": "Install Foundry"
-    },
-    {
-      "command": "forge install https://github.com/foundry-rs/forge-std lib/forge-std --no-commit && forge install https://github.com/OpenZeppelin/openzeppelin-contracts lib/openzeppelin-contracts --no-commit && forge install https://github.com/smartcontractkit/ccip lib/ccip --no-commit && forge install https://github.com/ava-labs/teleporter lib/teleporter --no-commit && forge install https://github.com/ava-labs/avalanche-interchain-token-transfer lib/avalanche-interchain-token-transfer --no-commit",
-      "name": "Install Libs"
     }
   ],
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
     "setup": {
       "name": "setup",
-      "command": "yarn setup"
+        "command":
+          "forge install https://github.com/foundry-rs/forge-std lib/forge-std --no-commit && forge install https://github.com/OpenZeppelin/openzeppelin-contracts lib/openzeppelin-contracts --no-commit && forge install https://github.com/smartcontractkit/ccip lib/ccip --no-commit && forge install https://github.com/ava-labs/teleporter lib/teleporter --no-commit && forge install https://github.com/ava-labs/avalanche-interchain-token-transfer lib/avalanche-interchain-token-transfer --no-commit"
     },
     "test:send": {
       "name": "test:send",
