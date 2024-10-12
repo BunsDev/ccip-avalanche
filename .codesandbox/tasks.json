@@ -10,7 +10,7 @@
       "name": "Install Foundry"
     },
     {
-      "command": "forge install https://github.com/foundry-rs/forge-std lib/forge-std --no-commit && forge install https://github.com/OpenZeppelin/openzeppelin-contracts lib/openzeppelin-contracts --no-commit && forge install https://github.com/smartcontractkit/ccip lib/ccip --no-commit && forge install https://github.com/ava-labs/teleporter lib/teleporter --no-commit && forge install https://github.com/ava-labs/avalanche-interchain-token-transfer lib/avalanche-interchain-token-transfer --no-commit && forge install https://github.com/ava-labs/subnet-evm lib/subnet-evm --no-commit",
+      "command": "forge install https://github.com/foundry-rs/forge-std lib/forge-std --no-commit && forge install https://github.com/OpenZeppelin/openzeppelin-contracts lib/openzeppelin-contracts --no-commit && forge install https://github.com/smartcontractkit/ccip lib/ccip --no-commit && forge install https://github.com/ava-labs/teleporter lib/teleporter --no-commit && forge install https://github.com/ava-labs/avalanche-interchain-token-transfer lib/avalanche-interchain-token-transfer --no-commit",
       "name": "Install Libs"
     }
   ],
@@ -56,16 +56,6 @@
     "receiveMessage": {
       "name": "receiveMessage",
       "command": "yarn receiveMessage"
-    },
-    "forge b --watch": {
-      "name": "Watch & Test",
-      "command": "~/.foundry/bin/forge t -vvvv --watch --run-all",
-      "runAtStart": true
-    },
-    "chiesel": {
-      "name": "REPL",
-      "command": "~/.foundry/bin/chisel",
-      "runAtStart": true
     }
   }
 }
