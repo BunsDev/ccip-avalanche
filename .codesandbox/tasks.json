@@ -1,0 +1,53 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "command": "yarn",
+      "name": "Install Dependencies"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "setup": {
+      "name": "setup",
+      "command": "yarn setup"
+    },
+    "test:send": {
+      "name": "test:send",
+      "command": "yarn test:send"
+    },
+    "test:broker": {
+      "name": "test:broker",
+      "command": "yarn test:broker"
+    },
+    "test:receive": {
+      "name": "test:receive",
+      "command": "yarn test:receive"
+    },
+    "deploy:sender": {
+      "name": "deploy:sender",
+      "command": "yarn deploy:sender"
+    },
+    "deploy:broker": {
+      "name": "deploy:broker",
+      "command": "yarn deploy:broker"
+    },
+    "deploy:receiver": {
+      "name": "deploy:receiver",
+      "command": "yarn deploy:receiver"
+    },
+    "sendMessage": {
+      "name": "sendMessage",
+      "command": "yarn sendMessage"
+    },
+    "brokerMessage": {
+      "name": "brokerMessage",
+      "command": "yarn brokerMessage"
+    },
+    "receiveMessage": {
+      "name": "receiveMessage",
+      "command": "yarn receiveMessage"
+    }
+  }
+}
