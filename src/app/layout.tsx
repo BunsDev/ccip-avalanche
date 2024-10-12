@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import localFont from "next/font/local";
-import { Inter, Roboto_Mono, Space_Mono, Space_Grotesk } from 'next/font/google'
+import { Space_Mono, Space_Grotesk } from 'next/font/google'
  
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-})
+// const inter = Inter({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-inter',
+// })
  
-const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto-mono',
-})
+// const roboto_mono = Roboto_Mono({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-roboto-mono',
+// })
 
 // const geist_sans = Space_Mono({
 //   weight: "700",

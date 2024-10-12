@@ -110,3 +110,9 @@ After running the script above to broker the message from Fuji to Dispatch, you 
 ```bash
 forge script ./script/Receive.s.sol:ReceiveMessage -vvv --broadcast --rpc-url dispatchTestnet
 ```
+
+---
+
+# Open Codespace
+
+[![Edit BunsDev/ccip-avalanche/codebox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/github/BunsDev/ccip-avalanche/codebox?embed=1)
