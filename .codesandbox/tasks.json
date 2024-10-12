@@ -1,61 +1,73 @@
 {
+  "$schema": "https://codesandbox.io/schemas/tasks.json",
+
   // These tasks will run in order when initializing your CodeSandbox project.
   "setupTasks": [
     {
-      "command": "yarn && yarn build",
-      "name": "Install Dependencies"
+      "name": "Install Dependencies",
+      "command": "yarn install"
     },
     {
-      "command": "curl -L https://foundry.paradigm.xyz | bash && ~/.foundry/bin/foundryup",
-      "name": "Install Foundry"
+      "name": "Build Workspace",
+      "command": "yarn build"
     },
     {
-      "command": "forge install https://github.com/foundry-rs/forge-std lib/forge-std --no-commit && forge install https://github.com/OpenZeppelin/openzeppelin-contracts lib/openzeppelin-contracts --no-commit && forge install https://github.com/smartcontractkit/ccip lib/ccip --no-commit && forge install https://github.com/ava-labs/teleporter lib/teleporter --no-commit && forge install https://github.com/ava-labs/avalanche-interchain-token-transfer lib/avalanche-interchain-token-transfer --no-commit",
-      "name": "Forge Install"
+      "name": "Install Foundry",
+      "command": "curl -L https://foundry.paradigm.xyz | bash && ~/.foundry/bin/foundryup"
+    },
+    {
+      "name": "Forge Install",
+      "command": "forge install https://github.com/foundry-rs/forge-std lib/forge-std --no-commit && forge install https://github.com/OpenZeppelin/openzeppelin-contracts lib/openzeppelin-contracts --no-commit && forge install https://github.com/smartcontractkit/ccip lib/ccip --no-commit && forge install https://github.com/ava-labs/teleporter lib/teleporter --no-commit && forge install https://github.com/ava-labs/avalanche-interchain-token-transfer lib/avalanche-interchain-token-transfer --no-commit"
     }
   ],
-
-  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
-    "launch": {
-      "name": "launch",
+    "0a_launch": {
+      "name": "0a_launch",
       "command": "yarn bdev",
       "runAtStart": true
     },
-    "test:send": {
-      "name": "test:send",
+    "0b_createEnv": {
+      "name": "0b_createEnv",
+      "command": "cp .env.example .env && source .env"
+    },
+    "0c_createKey": {
+      "name": "0c_createKey",
+      "command": "source .env && cast wallet import -k keystore secret --private-key $PRIVATE_KEY"
+    },
+    "1a_testSend": {
+      "name": "1a_testSend",
       "command": "yarn test:send"
     },
-    "test:broker": {
-      "name": "test:broker",
+    "1b_testBroker": {
+      "name": "1b_testBroker",
       "command": "yarn test:broker"
     },
-    "test:receive": {
-      "name": "test:receive",
+    "1c_testReceive": {
+      "name": "1c_testReceive",
       "command": "yarn test:receive"
     },
-    "deploy:sender": {
-      "name": "deploy:sender",
+    "2a_deploySender": {
+      "name": "2a_deploySender",
       "command": "yarn deploy:sender"
     },
-    "deploy:broker": {
-      "name": "deploy:broker",
+    "2b_deployBroker": {
+      "name": "2b_deployBroker",
       "command": "yarn deploy:broker"
     },
-    "deploy:receiver": {
-      "name": "deploy:receiver",
+    "2c_deployReceiver": {
+      "name": "2c_deployReceiver",
       "command": "yarn deploy:receiver"
     },
-    "sendMessage": {
-      "name": "sendMessage",
+    "3a_sendMessage": {
+      "name": "3a_sendMessage",
       "command": "yarn sendMessage"
     },
-    "brokerMessage": {
-      "name": "brokerMessage",
+    "3b_brokerMessage": {
+      "name": "3b_brokerMessage",
       "command": "yarn brokerMessage"
     },
-    "receiveMessage": {
-      "name": "receiveMessage",
+    "3c_receiveMessage": {
+      "name": "3c_receiveMessage",
       "command": "yarn receiveMessage"
     }
   }
