@@ -4,7 +4,24 @@
 
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
+image: gitpod/workspace-full
+
+# Commands that will run on workspace start
 tasks:
-  - init: make && yarn install
+  - name: Setup Environment
+    before: curl -L https://foundry.paradigm.xyz | bash && ~/.foundry/bin/foundryup
+    command: "forge install https://github.com/foundry-rs/forge-std lib/forge-std --no-commit && forge install https://github.com/OpenZeppelin/openzeppelin-contracts lib/openzeppelin-contracts --no-commit && forge install https://github.com/smartcontractkit/ccip lib/ccip --no-commit && forge install https://github.com/ava-labs/teleporter lib/teleporter --no-commit && forge install https://github.com/ava-labs/avalanche-interchain-token-transfer lib/avalanche-interchain-token-transfer --no-commit"
 
+  - name: Install Dependencies
+    before: yarn install
+    init: yarn install
+    command: yarn build
 
+# Ports to expose on workspace startup
+ports:
+    - port: 3000
+      onOpen: open-preview
+      name: Website
+      description: Website Preview
+      visibility: private
+      protocol: https
