@@ -18,11 +18,12 @@ image: gitpod/workspace-full
 # gp sync-done $NEW_TASK_NAME
 # gp sync-await $DONE_TASK_NAME
 
+# rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "modules"
+
 tasks:
   - name: Foundry
     before: |
       curl -L https://foundry.paradigm.xyz | bash && source ~/.bashrc && foundryup
-      rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "modules"
     init: |
       forge install https://github.com/foundry-rs/forge-std lib/forge-std --no-commit
       forge install https://github.com/OpenZeppelin/openzeppelin-contracts lib/openzeppelin-contracts --no-commit
