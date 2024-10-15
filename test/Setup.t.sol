@@ -3,10 +3,9 @@ pragma solidity ^0.8.19;
 
 import {console, Test} from "forge-std/Test.sol";
 import {CCIPLocalSimulatorFork, Register} from "@chainlink/local/src/ccip/CCIPLocalSimulatorFork.sol";
-import {IRouterClient} from "@chainlink/contracts-ccip/src/v0.8/ccip/interfaces/IRouterClient.sol";
 import {Client} from "@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol";
 import {BurnMintERC677Helper, IERC20} from "@chainlink/local/src/ccip/CCIPLocalSimulator.sol";
-import {ITeleporterMessenger} from "@teleporter/TeleporterMessenger.sol";
+import {ITeleporterMessenger} from "src/icm/ITeleporterMessenger.sol";
 
 import {MessageBroker} from "../src/MessageBroker.sol";
 import {MessageSender} from "../src/MessageSender.sol";

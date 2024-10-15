@@ -3,11 +3,6 @@ pragma solidity ^0.8.19;
 
 import {BaseScript, console} from "./BaseScript.s.sol";
 import {MessageBroker} from "../src/MessageBroker.sol";
-import {
-    IWarpMessenger,
-    TeleporterFeeInfo,
-    TeleporterMessageInput
-} from "@teleporter/TeleporterMessenger.sol";
 
 contract BrokerMessage is BaseScript {
     MessageBroker messageBroker = MessageBroker(MESSAGE_BROKER_ADDRESS);
