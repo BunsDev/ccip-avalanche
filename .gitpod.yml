@@ -22,6 +22,7 @@ tasks:
   - name: Foundry
     before: |
       curl -L https://foundry.paradigm.xyz | bash && source ~/.bashrc && foundryup
+      rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "modules"
     init: |
       forge install https://github.com/foundry-rs/forge-std lib/forge-std --no-commit
       forge install https://github.com/OpenZeppelin/openzeppelin-contracts lib/openzeppelin-contracts --no-commit
@@ -42,19 +43,23 @@ tasks:
   - name: t:Sender
     openMode: tab-after
     init: |
-     gp sync-await setup
-     yarn test:send
+      gp sync-await setup
+      source /home/gitpod/.bashrc
+      yarn test:send
 
   - name: t:Broker
     openMode: split-left
     init: |
       gp sync-await setup
+      source /home/gitpod/.bashrc
       yarn test:broker
 
   - name: t:Receiver
+    before: source /home/gitpod/.bashrc
     openMode: split-right
     init: |
       gp sync-await setup
+      source /home/gitpod/.bashrc
       yarn test:receiver
 
 vscode:
