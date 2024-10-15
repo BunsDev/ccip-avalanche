@@ -4,8 +4,7 @@ pragma solidity ^0.8.19;
 import {CCIPReceiver} from "src/ccip/CCIPReceiver.sol";
 import {Client} from "src/ccip/Client.sol";
 import {Withdraw} from "./utils/Withdraw.sol";
-import {ITeleporterMessenger, TeleporterMessageInput} from "src/icm/ITeleporterMessenger.sol";
-import {TeleporterFeeInfo} from "src/icm/TeleporterFeeInfo.sol";
+import {ITeleporterMessenger, TeleporterFeeInfo, TeleporterMessageInput} from "@teleporter/TeleporterMessenger.sol";
 
 contract MessageBroker is CCIPReceiver, Withdraw {
 

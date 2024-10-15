@@ -24,8 +24,8 @@ contract Setup is Test {
 
     // local addresses //
     address public MESSAGE_SENDER_ADDRESS;
-    address public MESSAGE_BROKER_ADDRESSpublic;
-    address public MESSAGE_RECEIVER_ADDRESSpublic;
+    address public MESSAGE_BROKER_ADDRESS;
+    address public MESSAGE_RECEIVER_ADDRESS;
 
     address public constant WARP_PRECOMPILE_ADDRESS = 0x0200000000000000000000000000000000000005;
 
