@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import {Client, console, Setup} from "./Setup.t.sol";
+import {console, Setup} from "./Setup.t.sol";
+import {Client} from "src/ccip/Client.sol";
 import {IWarpMessenger} from "src/icm/IWarpMessenger.sol";
 
 contract Enchanted is Setup {

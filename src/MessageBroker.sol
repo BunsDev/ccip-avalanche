@@ -1,14 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import {CCIPReceiver} from "@chainlink/contracts-ccip/src/v0.8/ccip/applications/CCIPReceiver.sol";
-import {Client} from "@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol";
+import {CCIPReceiver} from "src/ccip/CCIPReceiver.sol";
+import {Client} from "src/ccip/Client.sol";
 import {Withdraw} from "./utils/Withdraw.sol";
-import {TeleporterMessageInput} from "@teleporter/TeleporterMessenger.sol";
-import {ITeleporterMessenger} from "src/icm/ITeleporterMessenger.sol";
+import {ITeleporterMessenger, TeleporterMessageInput} from "src/icm/ITeleporterMessenger.sol";
 import {TeleporterFeeInfo} from "src/icm/TeleporterFeeInfo.sol";
 
 contract MessageBroker is CCIPReceiver, Withdraw {
+
+    // struct to hold details of a message.
+    struct Message {
+        bytes32 messageID;
+        uint64 sourceChainSelector;
+        address sender;
+        string message;
+    }
+
     // CCIP | Receiver Variables
     bytes32 public latestMessageId;
     bytes32 public latestBrokeredId;
@@ -23,14 +31,6 @@ contract MessageBroker is CCIPReceiver, Withdraw {
     bytes32[] public receivedMessages;                  // IDs of received messages.
     bytes32[] public brokeredMessages;                   // IDs of brokered messages.
     mapping(bytes32 => Message) public messageDetail;   // messageID -> Message struct mapping.
-
-    // struct to hold details of a message.
-    struct Message {
-        bytes32 messageID;
-        uint64 sourceChainSelector;
-        address sender;
-        string message;
-    }
 
     ITeleporterMessenger public immutable teleporterMessenger =
         ITeleporterMessenger(0x253b2784c75e510dD0fF1da844684a1aC0aa5fcf);

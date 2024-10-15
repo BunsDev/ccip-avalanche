@@ -13,7 +13,10 @@
         "func-name-mixedcase": "off",
         "explicit-types": "off",
         "one-contract-per-file": "off",
-        "max-states-count": "off"
+        "max-states-count": "off",
+        "ignoreFiles": [
+            "node_modules/**"
+        ]
     },
     "ignoreFiles": ["build/**", "node_modules/**", "test/**", "lib/**"]
 }
