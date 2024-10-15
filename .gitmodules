@@ -15,4 +15,4 @@
 	url = https://github.com/lib/avalanche-interchain-token-transfer
 [submodule "lib/subnet-evm"]
 	path = lib/subnet-evm
-	url = https://github.com/ava-labs/subnet-evm
+	url = https://github.com/lib/subnet-evm
