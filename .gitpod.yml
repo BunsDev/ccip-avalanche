@@ -51,9 +51,10 @@ tasks:
 
   - name: Setup
     openMode: tab-after
-    before: yarn && source /home/gitpod/.bashrc
+    before: yarn
     init: |
       gp sync-await foundry
+      source /home/gitpod/.bashrc
       yarn setup
       gp sync-done setup
 
