@@ -20,10 +20,12 @@ image: gitpod/workspace-full
 
 # rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "modules"
 
+# note: make .env this conditional
 tasks:
   - name: Variables
     init: |
       cp .env.example .env && source .env
+      
 
   - name: Foundry
     before: |
