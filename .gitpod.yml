@@ -21,16 +21,32 @@ image: gitpod/workspace-full
 # rm -rf .gitmodules && rm -rf .git/modules/* && rm -rf lib && touch .gitmodules && git add . && git commit -m "modules"
 
 # note: make .env this conditional
+    # cp .env.example .env && source .env
 tasks:
-  - name: Variables
+  - name: Environment
     init: |
-      cp .env.example .env && source .env
-      
+      if [ -f .env ]; then
+        echo "Found .env in workspace"
+      else
+        if [ -z "${DOTENV}" ]; then
+          echo "Setting example .env"
+          cp .env.example .env  
+      else
+        # After making changes to .env, run this line to persist it to $DOTENV
+        #   gp env DOTENV="$(base64 .env | tr -d '\n')"
+        #
+        # Environment variables set this way are shared between all your workspaces for this repo
+        # The lines below will read $DOTENV and print a .env file
+        echo "Restoring .env from Gitpod"
+        echo "${DOTENV}" | base64 -d > .env
+        fi
+      fi
 
   - name: Foundry
     before: |
       curl -L https://foundry.paradigm.xyz | bash && source ~/.bashrc && foundryup
     init: |
+      rm -rf .gitmodules && rm -rf lib && touch .gitmodules && git add .
       forge install https://github.com/foundry-rs/forge-std lib/forge-std --no-commit
       forge install https://github.com/OpenZeppelin/openzeppelin-contracts lib/openzeppelin-contracts --no-commit
       forge install https://github.com/smartcontractkit/ccip lib/ccip --no-commit
