@@ -10,6 +10,8 @@ contract ReceiveMessage is BaseScript {
     function run(
     ) external {
         vm.startBroadcast(PRIVATE_KEY);
+                console.log('msgSender', msg.sender);
+
         string memory lastMessageReceived = messageReceiver.lastMessageReceived();
         // messageReceiver.receiveTeleporterMessage(
         //     DISPATCH_BLOCKCHAIN_ID, 

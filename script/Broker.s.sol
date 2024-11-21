@@ -10,34 +10,38 @@ contract BrokerMessage is BaseScript {
     function run() external {
         vm.startBroadcast(PRIVATE_KEY);
 
-        bytes32 latestMessageId = messageBroker.latestMessageId();
-        uint64 latestSourceChainSelector = messageBroker.latestSourceChainSelector();
-        address latestSender = messageBroker.latestSender();
-        string memory latestMessage = messageBroker.latestMessageText();
+        // bytes32 latestMessageId = messageBroker.latestMessageId();
+        // uint64 latestSourceChainSelector = messageBroker.latestSourceChainSelector();
+        // address latestSender = messageBroker.latestSender();
+        // string memory latestMessage = messageBroker.latestMessageText();
 
-        console.log("=== Latest Message Details ===");
-        console.log("\u2705 | MessageID: ");
-        console.logBytes32(latestMessageId);
-        console.log("\u2705 | Source Chain Selector:", latestSourceChainSelector);
-        console.log("\u2705 | Sender:", latestSender);
-        console.log("\u2705 | Message: \'%s\'", latestMessage);
+        // console.log("=== Latest Message Details ===");
+        // console.log("\u2705 | MessageID: ");
+        // console.logBytes32(latestMessageId);
+        // console.log("\u2705 | Source Chain Selector:", latestSourceChainSelector);
+        // console.log("\u2705 | Sender:", latestSender);
+        // console.log("\u2705 | Message: \'%s\'", latestMessage);
 
-        // console.log("\u231B | Brokering \'%s\' to Dispatch...", latestMessage);
+        // // console.log("\u231B | Brokering \'%s\' to Dispatch...", latestMessage);
+        vm.mockCall(
+            WARP_PRECOMPILE_ADDRESS, abi.encode(IWarpMessenger.sendWarpMessage.selector), abi.encode(bytes32(0))
+        );
 
-        // bytes32 brokerMessageId =
-        //     messageBroker.brokerMessage(
-        //         MESSAGE_RECEIVER_ADDRESS // _destinationAddress
-        // );
-
-        // console.log("brokerMessageId: ");
-        // console.logBytes32(brokerMessageId);
-        // string memory messageBrokered = messageBroker.latestMessageText();
-        // bytes32 latestBrokerMessageId = messageBroker.latestBrokeredId();
-        // console.log("latestBrokerMessageId: ");
-        // console.logBytes32(latestBrokerMessageId);
-
-        // console.log("\u2705 | Brokered \'%s\'", messageBrokered);
+        console.log('msgSender', msg.sender);
+        bytes32 brokerMessageId =
+            messageBroker.brokerMessage(
+                MESSAGE_RECEIVER_ADDRESS // _destinationAddress
+        );
 
         vm.stopBroadcast();
+        console.log("brokerMessageId: ");
+        console.logBytes32(brokerMessageId);
+        string memory messageBrokered = messageBroker.latestMessageText();
+        bytes32 latestBrokerMessageId = messageBroker.latestBrokeredId();
+        console.log("latestBrokerMessageId: ");
+        console.logBytes32(latestBrokerMessageId);
+
+        console.log("\u2705 | Brokered \'%s\'", messageBrokered);
+
     }
 }
